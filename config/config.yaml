@@ -1,0 +1,178 @@
+subinfo_fields:
+  - name: subject_id
+    type: int
+    constraints:
+      min: 101
+      max: 999
+      digits: 3
+  - name: subname
+    type: string
+  - name: age
+    type: int
+    constraints:
+      min: 5
+      max: 60
+  - name: gender
+    type: choice
+    choices:
+      - Male
+      - Female
+
+subinfo_mapping:
+  subject_id: 被试号
+  subname: 被试姓名(拼音)
+  age: 年龄
+  gender: 性别
+  Male: 男
+  Female: 女
+  registration_failed: 注册失败。
+  registration_successful: 注册成功！
+  invalid_input: 字段 {field} 输入无效
+
+window:
+  size: [1920, 1080]
+  units: deg
+  screen: 0
+  bg_color: gray
+  fullscreen: true
+  fullscreen_lock_escape: true
+  monitor_width_cm: 60
+  monitor_distance_cm: 72
+
+task:
+  task_name: ax_cpt
+  language: chinese
+  voice_name: zh-CN-YunyangNeural
+  voice_enabled: true
+  total_blocks: 1
+  total_trials: 24
+  trial_per_block: 24
+  conditions: [AX, AY, BX, BY]
+  condition_weights:
+    AX: 0.4
+    AY: 0.1
+    BX: 0.1
+    BY: 0.4
+  key_list: [f, j]
+  target_key: f
+  nontarget_key: j
+  seed_mode: same_across_sub
+  overall_seed: 2025
+  delta: 0.0
+  input_mode: keyboard
+  hide_cursor: true
+
+stimuli:
+  fixation:
+    type: text
+    text: +
+    color: white
+    height: 1.5
+  cue_A:
+    type: text
+    text: A
+    color: white
+    height: 1.5
+  cue_B:
+    type: text
+    text: B
+    color: white
+    height: 1.5
+  probe_X:
+    type: text
+    text: X
+    color: white
+    height: 1.5
+  probe_Y:
+    type: text
+    text: Y
+    color: white
+    height: 1.5
+  correct_feedback:
+    type: text
+    text: 正确
+    color: white
+    font: SimHei
+    height: 1.5
+  incorrect_feedback:
+    type: text
+    text: 错误
+    color: white
+    font: SimHei
+    height: 1.5
+  no_response_feedback:
+    type: text
+    text: 未反应
+    color: white
+    font: SimHei
+    height: 1.5
+  block_break:
+    type: text
+    text: |
+      第 {block_num} / {total_blocks} 部分完成
+
+      正确率：{accuracy:.2%}
+
+
+      请在充分休息后按【空格键】继续
+    color: white
+    height: 1.5
+  instruction_text:
+    type: textbox
+    text: |
+      【AX-CPT任务】
+
+
+      您将看到屏幕上依次呈现两个字母：一个“提示”字母，一个“探测”字母。
+
+
+      您的任务是：
+
+      如果“提示”字母是【A】，并且“探测”字母是【X】，请按【f】键。
+
+      在所有其他情况下（AY, BX, BY），请按【j】键。
+
+
+      请您尽量快速并准确地作答。
+
+
+      准备好后，请按【空格键】开始任务。
+    color: white
+    font: SimHei
+    alignment: center
+    letterHeight: 0.78
+    units: deg
+    size: [20, 5]
+  good_bye:
+    type: text
+    text: 实验结束，感谢您的参与！
+    color: white
+    height: 1.5
+
+timing:
+  cue_duration: 0.5
+  fixation_duration: 0.5
+  probe_duration: 1.0
+  isi_duration: 0.5
+  feedback_duration: 0.5
+  iti_duration: [0.8, 1.2]
+
+triggers:
+  map:
+    fixation_onset: 1
+    exp_onset: 98
+    exp_end: 99
+    block_onset: 100
+    block_end: 101
+    cue_onset: 10
+    probe_onset: 20
+    AX_trial_onset: 30
+    AY_trial_onset: 31
+    BX_trial_onset: 32
+    BY_trial_onset: 33
+    key_press: 40
+    no_response: 41
+    feedback_correct_response: 51
+    feedback_incorrect_response: 52
+    feedback_no_response: 53
+    feedback_onset: 60
